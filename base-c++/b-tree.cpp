@@ -1,20 +1,20 @@
-// Реализация бинарного дерева
-// +подсчет глубины дерева и поиск элемента
+// Р РµР°Р»РёР·Р°С†РёСЏ Р±РёРЅР°СЂРЅРѕРіРѕ РґРµСЂРµРІР°
+// +РїРѕРґСЃС‡РµС‚ РіР»СѓР±РёРЅС‹ РґРµСЂРµРІР° Рё РїРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
 
 #include <iostream>
 #include <stack>
 #include <vector>
 using namespace std;
 class Node {
-public: int Data;                  // Данные 
+public: int Data;                  // Р”Р°РЅРЅС‹Рµ 
 		Node* leftChild;
-		Node* rightChild; // Правый и левый потомок узла   
+		Node* rightChild; // РџСЂР°РІС‹Р№ Рё Р»РµРІС‹Р№ РїРѕС‚РѕРјРѕРє СѓР·Р»Р°   
 		Node(int N)
 		{
 			Data = N;
 			leftChild = rightChild = 0;
 		}
-	 void displayNode()            // Вывод узла      
+	 void displayNode()            // Р’С‹РІРѕРґ СѓР·Р»Р°      
 	{
 		 cout << " " << Data << " ";
 	 }
@@ -22,47 +22,47 @@ public: int Data;                  // Данные
 class Tree {
 public:
 	Node* root;             // first node of tree
-	Tree() : root(0) {} // Конструктор // Пока нет ни одного узла          
+	Tree() : root(0) {} // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ // РџРѕРєР° РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ СѓР·Р»Р°          
 	int find(int d) {
-		Node* current = root;                // Начать с корневого узла      
-		while (current->Data != d)         // Пока не найдено совпадение         
+		Node* current = root;                // РќР°С‡Р°С‚СЊ СЃ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°      
+		while (current->Data != d)         // РџРѕРєР° РЅРµ РЅР°Р№РґРµРЅРѕ СЃРѕРІРїР°РґРµРЅРёРµ         
 		{
-			if (d < current->Data)          // Двигаться налево?            
+			if (d < current->Data)          // Р”РІРёРіР°С‚СЊСЃСЏ РЅР°Р»РµРІРѕ?            
 				current = current->leftChild;
-			else                             // Или направо?
+			else                             // РР»Рё РЅР°РїСЂР°РІРѕ?
 				current = current->rightChild;
-			if (current == NULL)             // Если потомка нет,            
-				return NULL;                 // поиск завершился неудачей         
+			if (current == NULL)             // Р•СЃР»Рё РїРѕС‚РѕРјРєР° РЅРµС‚,            
+				return NULL;                 // РїРѕРёСЃРє Р·Р°РІРµСЂС€РёР»СЃСЏ РЅРµСѓРґР°С‡РµР№         
 		}
-		return current->Data;                    // Элемент найден      
+		return current->Data;                    // Р­Р»РµРјРµРЅС‚ РЅР°Р№РґРµРЅ      
 	}
 	void insert(int d)
 	{
-		Node* newNode = new Node(d);    // Создание нового узла      
-		//newNode->Data = d;           // Вставка данных     
-		if (root == NULL)                // Корневой узел не существует         
+		Node* newNode = new Node(d);    // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ СѓР·Р»Р°      
+		//newNode->Data = d;           // Р’СЃС‚Р°РІРєР° РґР°РЅРЅС‹С…     
+		if (root == NULL)                // РљРѕСЂРЅРµРІРѕР№ СѓР·РµР» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚         
 			root = newNode;
-		else                          // Корневой узел занят         
+		else                          // РљРѕСЂРЅРµРІРѕР№ СѓР·РµР» Р·Р°РЅСЏС‚         
 		{
-			Node* current = root;       // Начать с корневого узла         
+			Node* current = root;       // РќР°С‡Р°С‚СЊ СЃ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°         
 			Node* parent;
-			while (true)                // (внутренний выход из цикла)            
+			while (true)                // (РІРЅСѓС‚СЂРµРЅРЅРёР№ РІС‹С…РѕРґ РёР· С†РёРєР»Р°)            
 			{
 				parent = current;
-				if (d < current->Data)  // Двигаться налево?               
+				if (d < current->Data)  // Р”РІРёРіР°С‚СЊСЃСЏ РЅР°Р»РµРІРѕ?               
 				{
 					current = current->leftChild;
-					if (current == NULL)  // Если достигнут конец цепочки,                  
-					{                 // вставить слева                 
+					if (current == NULL)  // Р•СЃР»Рё РґРѕСЃС‚РёРіРЅСѓС‚ РєРѕРЅРµС† С†РµРїРѕС‡РєРё,                  
+					{                 // РІСЃС‚Р°РІРёС‚СЊ СЃР»РµРІР°                 
 						parent->leftChild = newNode;
 						return;
 					}
 				}
-				else                    // Или направо?               
+				else                    // РР»Рё РЅР°РїСЂР°РІРѕ?               
 				{
 					current = current->rightChild;
-					if (current == NULL)  // Если достигнут конец цепочки,                  
-					{                 // вставить справа                  
+					if (current == NULL)  // Р•СЃР»Рё РґРѕСЃС‚РёРіРЅСѓС‚ РєРѕРЅРµС† С†РµРїРѕС‡РєРё,                  
+					{                 // РІСЃС‚Р°РІРёС‚СЊ СЃРїСЂР°РІР°                  
 						parent->rightChild = newNode;
 						return;
 					}
@@ -82,61 +82,61 @@ public:
 		recprint(root);
 		cout << endl;
 	}
-	bool delet(int key) {  // Удаление узла   
+	bool delet(int key) {  // РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р°   
 		Node* current = root;
 		Node* parent = root;
 		bool isLeftChild = true;
-		while (current->Data != key) {       // Поиск узла
+		while (current->Data != key) {       // РџРѕРёСЃРє СѓР·Р»Р°
 			parent = current;
-			if (key < current->Data) {        // Двигаться налево?            
+			if (key < current->Data) {        // Р”РІРёРіР°С‚СЊСЃСЏ РЅР°Р»РµРІРѕ?            
 				isLeftChild = true;
 				current = current->leftChild;
 			}
-			else {                           // Или направо?            
+			else {                           // РР»Рё РЅР°РїСЂР°РІРѕ?            
 				isLeftChild = false;
 				current = current->rightChild;
 			}
-			if (current == NULL) return false;  // Конец цепочки // Узел не найден                                 
-		}      // Удаляемый узел найден
+			if (current == NULL) return false;  // РљРѕРЅРµС† С†РµРїРѕС‡РєРё // РЈР·РµР» РЅРµ РЅР°Р№РґРµРЅ                                 
+		}      // РЈРґР°Р»СЏРµРјС‹Р№ СѓР·РµР» РЅР°Р№РґРµРЅ
 
-		if (current->leftChild == NULL && current->rightChild == NULL) { // Если узел не имеет потомков, он просто удаляется.
-			if (current == root) root = NULL;                 // Если узел является корневым, дерево очищается            	                         
-			else if (isLeftChild) parent->leftChild = NULL;   // Узел отсоединяется от родителя
+		if (current->leftChild == NULL && current->rightChild == NULL) { // Р•СЃР»Рё СѓР·РµР» РЅРµ РёРјРµРµС‚ РїРѕС‚РѕРјРєРѕРІ, РѕРЅ РїСЂРѕСЃС‚Рѕ СѓРґР°Р»СЏРµС‚СЃСЏ.
+			if (current == root) root = NULL;                 // Р•СЃР»Рё СѓР·РµР» СЏРІР»СЏРµС‚СЃСЏ РєРѕСЂРЅРµРІС‹Рј, РґРµСЂРµРІРѕ РѕС‡РёС‰Р°РµС‚СЃСЏ            	                         
+			else if (isLeftChild) parent->leftChild = NULL;   // РЈР·РµР» РѕС‚СЃРѕРµРґРёРЅСЏРµС‚СЃСЏ РѕС‚ СЂРѕРґРёС‚РµР»СЏ
 			else parent->rightChild = NULL;
 		}
 
-		else if (current->rightChild == NULL) { // Если нет правого потомка, узел заменяется левым поддеревом 
+		else if (current->rightChild == NULL) { // Р•СЃР»Рё РЅРµС‚ РїСЂР°РІРѕРіРѕ РїРѕС‚РѕРјРєР°, СѓР·РµР» Р·Р°РјРµРЅСЏРµС‚СЃСЏ Р»РµРІС‹Рј РїРѕРґРґРµСЂРµРІРѕРј 
 			if (current == root) root = current->leftChild;
 			else if (isLeftChild) parent->leftChild = current->leftChild;
 			else parent->rightChild = current->leftChild;
 		}
-		else if (current->leftChild == NULL) { // Если нет левого потомка, узел заменяется правым поддеревом  
+		else if (current->leftChild == NULL) { // Р•СЃР»Рё РЅРµС‚ Р»РµРІРѕРіРѕ РїРѕС‚РѕРјРєР°, СѓР·РµР» Р·Р°РјРµРЅСЏРµС‚СЃСЏ РїСЂР°РІС‹Рј РїРѕРґРґРµСЂРµРІРѕРј  
 			if (current == root) root = current->rightChild;
 			else if (isLeftChild) parent->leftChild = current->rightChild;
 			else parent->rightChild = current->rightChild;
 		}
-		else { // Два потомка, узел заменяется преемником
-			Node* successor = getSuccessor(current); // Поиск преемника для удаляемого узла (current)   
-			if (current == root) root = successor; // Родитель current связывается с посредником
+		else { // Р”РІР° РїРѕС‚РѕРјРєР°, СѓР·РµР» Р·Р°РјРµРЅСЏРµС‚СЃСЏ РїСЂРµРµРјРЅРёРєРѕРј
+			Node* successor = getSuccessor(current); // РџРѕРёСЃРє РїСЂРµРµРјРЅРёРєР° РґР»СЏ СѓРґР°Р»СЏРµРјРѕРіРѕ СѓР·Р»Р° (current)   
+			if (current == root) root = successor; // Р РѕРґРёС‚РµР»СЊ current СЃРІСЏР·С‹РІР°РµС‚СЃСЏ СЃ РїРѕСЃСЂРµРґРЅРёРєРѕРј
 			else if (isLeftChild) parent->leftChild = successor;
-			else parent->rightChild = successor; // Преемник связывается с левым потомком current   
+			else parent->rightChild = successor; // РџСЂРµРµРјРЅРёРє СЃРІСЏР·С‹РІР°РµС‚СЃСЏ СЃ Р»РµРІС‹Рј РїРѕС‚РѕРјРєРѕРј current   
 			successor->leftChild = current->leftChild;        
 		}
 		delete current;
 		return true;
 	}
-	// Метод возвращает узел со следующим значением после delNode.   
-	// Для этого он сначала переходит к правому потомку, а затем   
-	// отслеживает цепочку левых потомков этого узла.   
+	// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СѓР·РµР» СЃРѕ СЃР»РµРґСѓСЋС‰РёРј Р·РЅР°С‡РµРЅРёРµРј РїРѕСЃР»Рµ delNode.   
+	// Р”Р»СЏ СЌС‚РѕРіРѕ РѕРЅ СЃРЅР°С‡Р°Р»Р° РїРµСЂРµС…РѕРґРёС‚ Рє РїСЂР°РІРѕРјСѓ РїРѕС‚РѕРјРєСѓ, Р° Р·Р°С‚РµРј   
+	// РѕС‚СЃР»РµР¶РёРІР°РµС‚ С†РµРїРѕС‡РєСѓ Р»РµРІС‹С… РїРѕС‚РѕРјРєРѕРІ СЌС‚РѕРіРѕ СѓР·Р»Р°.   
 	Node* getSuccessor(Node* delNode) {
 		Node* successorParent = delNode;
 		Node* successor = delNode;
-		Node* current = delNode->rightChild;   // Переход к правому потомку     
-		while (current != NULL) {              // Пока остаются левые потомки         
+		Node* current = delNode->rightChild;   // РџРµСЂРµС…РѕРґ Рє РїСЂР°РІРѕРјСѓ РїРѕС‚РѕРјРєСѓ     
+		while (current != NULL) {              // РџРѕРєР° РѕСЃС‚Р°СЋС‚СЃСЏ Р»РµРІС‹Рµ РїРѕС‚РѕРјРєРё         
 			successorParent = successor;
 			successor = current;
-			current = current->leftChild;      // Переход к левому потомку        
-		}                                           // Если преемник не является правым потомком, создать связи между узлами     
+			current = current->leftChild;      // РџРµСЂРµС…РѕРґ Рє Р»РµРІРѕРјСѓ РїРѕС‚РѕРјРєСѓ        
+		}                                           // Р•СЃР»Рё РїСЂРµРµРјРЅРёРє РЅРµ СЏРІР»СЏРµС‚СЃСЏ РїСЂР°РІС‹Рј РїРѕС‚РѕРјРєРѕРј, СЃРѕР·РґР°С‚СЊ СЃРІСЏР·Рё РјРµР¶РґСѓ СѓР·Р»Р°РјРё     
 		if (successor != delNode->rightChild) {
 			successorParent->leftChild = successor->rightChild;
 			successor->rightChild = delNode->rightChild;
@@ -194,9 +194,9 @@ int main()
 		t.delet(1); t.print(); 
 		t.delet(8); t.print(); 
 		t.delet(31); t.print();
-		cout << "Глубина: ";
+		cout << "Р“Р»СѓР±РёРЅР°: ";
 		t.kl();
-		cout<<"Поиск эл-та: "<<t.find(27)<<endl;
+		cout<<"РџРѕРёСЃРє СЌР»-С‚Р°: "<<t.find(27)<<endl;
 		t.deltree();
 		system("pause");
 		return 0;
