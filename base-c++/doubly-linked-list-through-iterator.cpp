@@ -1,4 +1,4 @@
-// Реализация двусвязного списка через итератор
+// Р РµР°Р»РёР·Р°С†РёСЏ РґРІСѓСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР° С‡РµСЂРµР· РёС‚РµСЂР°С‚РѕСЂ
 
 #include<iostream>
 using namespace std;
@@ -16,98 +16,98 @@ class LinkList
 {
 private: Link* first;
 
-public: LinkList() // Конструктор
-		{ first = NULL; } // Список пока не содержит элементов
+public: LinkList() // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+		{ first = NULL; } // РЎРїРёСЃРѕРє РїРѕРєР° РЅРµ СЃРѕРґРµСЂР¶РёС‚ СЌР»РµРјРµРЅС‚РѕРІ
 
-		Link* getFirst() // Получение первого элемента
+		Link* getFirst() // РџРѕР»СѓС‡РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		{ return first;	}
 
-		void setFirst(Link* f) // Присваивание нового значения first
+		void setFirst(Link* f) // РџСЂРёСЃРІР°РёРІР°РЅРёРµ РЅРѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ first
 		{ first = f; }
 
-		bool isEmpty() // true, если список пуст
+		bool isEmpty() // true, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚
 		{ return first == NULL;	}
 
 		void displayList()
 		{
-			Link* current = first; // От начала списка
-			while (current != NULL) // Перемещение до конца списка
+			Link* current = first; // РћС‚ РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР°
+			while (current != NULL) // РџРµСЂРµРјРµС‰РµРЅРёРµ РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°
 			{
-				current->displayLink(); // Вывод текущего элемента
-				current = current->next; // Переход к следующему элементу
+				current->displayLink(); // Р’С‹РІРѕРґ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
+				current = current->next; // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ
 			}
 		}
 };
 
 class ListIterator
 {
-private: Link* current; // Текущий элемент списка
-		 Link* previous; // Предыдущий элемент списка
-		 LinkList* ourList; // Связанный список
+private: Link* current; // РўРµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+		 Link* previous; // РџСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+		 LinkList* ourList; // РЎРІСЏР·Р°РЅРЅС‹Р№ СЃРїРёСЃРѕРє
 
-public: ListIterator(LinkList* list) // Конструктор
+public: ListIterator(LinkList* list) // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 		{
 			ourList = list;
 			reset();
 		}
 
-		void reset() // Возврат к 'first'
+		void reset() // Р’РѕР·РІСЂР°С‚ Рє 'first'
 		{
 			current = ourList->getFirst();
 			previous = NULL;
 		}
-		bool atEnd() // true, если текущим является последний элемент
+		bool atEnd() // true, РµСЃР»Рё С‚РµРєСѓС‰РёРј СЏРІР»СЏРµС‚СЃСЏ РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 		{ return (current->next == NULL); }
 
-		void nextLink() // Переход к следующему элементу
+		void nextLink() // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ
 		{
 			previous = current;
 			current = current->next;
 		}
 
-		Link* getCurrent() // Получение текущего элемента
+		Link* getCurrent() // РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 		{ return current; }
 
-		void insertAfter(int dd) // Вставка после текущего элемента
+		void insertAfter(int dd) // Р’СЃС‚Р°РІРєР° РїРѕСЃР»Рµ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 		{
 			Link* newLink = new Link(dd);
-			if (ourList->isEmpty()) // Пустой список
+			if (ourList->isEmpty()) // РџСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє
 			{
 				ourList->setFirst(newLink);
 				current = newLink;
 			}
-			else // Список не пуст
+			else // РЎРїРёСЃРѕРє РЅРµ РїСѓСЃС‚
 			{
 				newLink->next = current->next;
 				current->next = newLink;
-				nextLink(); // Переход к новому элементу
+				nextLink(); // РџРµСЂРµС…РѕРґ Рє РЅРѕРІРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ
 			}
 		}
-		void insertBefore(int dd) // Вставка перед текущим элементом
+		void insertBefore(int dd) // Р’СЃС‚Р°РІРєР° РїРµСЂРµРґ С‚РµРєСѓС‰РёРј СЌР»РµРјРµРЅС‚РѕРј
 		{
 			Link* newLink = new Link(dd);
-			if (previous == NULL)  // В начале списка
-			{					  // (или пустой список)
+			if (previous == NULL)  // Р’ РЅР°С‡Р°Р»Рµ СЃРїРёСЃРєР°
+			{					  // (РёР»Рё РїСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє)
 				newLink->next = ourList->getFirst();
 				ourList->setFirst(newLink);
 				reset();
 			}
-			else // Не в начале списка
+			else // РќРµ РІ РЅР°С‡Р°Р»Рµ СЃРїРёСЃРєР°
 			{
 				newLink->next = previous->next;
 				previous->next = newLink;
 				current = newLink;
 			}
 		}
-		int deleteCurrent() // Удаление текущего элемента
+		int deleteCurrent() // РЈРґР°Р»РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 		{
 			int value = current->dData;
-			if (previous == NULL) // Если в начале списка
+			if (previous == NULL) // Р•СЃР»Рё РІ РЅР°С‡Р°Р»Рµ СЃРїРёСЃРєР°
 			{
 				ourList->setFirst(current->next);
 				reset();
 			}
-			else // Не в начале списка
+			else // РќРµ РІ РЅР°С‡Р°Р»Рµ СЃРїРёСЃРєР°
 			{
 				previous->next = current->next;
 				if (atEnd()) reset();
@@ -118,15 +118,15 @@ public: ListIterator(LinkList* list) // Конструктор
 };
 
 int main() {
-	LinkList* theList = new LinkList(); // Создание списка 
-	ListIterator* iter1 = new ListIterator(theList); // Создание итератора
+	LinkList* theList = new LinkList(); // РЎРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° 
+	ListIterator* iter1 = new ListIterator(theList); // РЎРѕР·РґР°РЅРёРµ РёС‚РµСЂР°С‚РѕСЂР°
 	int value;
-	iter1->insertAfter(20); // Вставка элементов
+	iter1->insertAfter(20); // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚РѕРІ
 	iter1->insertAfter(40);
 	iter1->insertAfter(80);
 	iter1->insertBefore(60);
 
-	// Вывод списка
+	// Р’С‹РІРѕРґ СЃРїРёСЃРєР°
 	theList->displayList();
 	system("pause");
 	return 0;
