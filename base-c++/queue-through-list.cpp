@@ -1,5 +1,5 @@
-// Реализация очереди через 2-сторонний список
-// +замена местами первого и последнего элемента в созданной очереди
+// Р РµР°Р»РёР·Р°С†РёСЏ РѕС‡РµСЂРµРґРё С‡РµСЂРµР· 2-СЃС‚РѕСЂРѕРЅРЅРёР№ СЃРїРёСЃРѕРє
+// +Р·Р°РјРµРЅР° РјРµСЃС‚Р°РјРё РїРµСЂРІРѕРіРѕ Рё РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° РІ СЃРѕР·РґР°РЅРЅРѕР№ РѕС‡РµСЂРµРґРё
 
 #include<iostream>
 using namespace std;
@@ -7,49 +7,49 @@ using namespace std;
 class Link
 {
 public:
-	int dData; // Данные
+	int dData; // Р”Р°РЅРЅС‹Рµ
 	Link* next;
-	Link(int d) // Конструктор
+	Link(int d) // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	{ dData = d; }
-	void displayLink() { cout << dData << " "; } // Вывод содержимого элемента
+	void displayLink() { cout << dData << " "; } // Р’С‹РІРѕРґ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 };
 
 class FirstLastList
 {
 private:
-	Link* first; // Ссылка на первый элемент
-	Link* last; // Ссылка на последний элемент
+	Link* first; // РЎСЃС‹Р»РєР° РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+	Link* last; // РЎСЃС‹Р»РєР° РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 public:
-	FirstLastList() { // Конструктор
-		first = NULL; last = NULL; } // Список пока не содержит элементов
-	bool isEmpty() { return (first == NULL); } // true, если список пуст
-	void insertLast(int dd) // Вставка элемента в конец списка
+	FirstLastList() { // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+		first = NULL; last = NULL; } // РЎРїРёСЃРѕРє РїРѕРєР° РЅРµ СЃРѕРґРµСЂР¶РёС‚ СЌР»РµРјРµРЅС‚РѕРІ
+	bool isEmpty() { return (first == NULL); } // true, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚
+	void insertLast(int dd) // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
 	{
-		Link* newLink = new Link(dd); // Создание нового элемента
+		Link* newLink = new Link(dd); // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		if (isEmpty()) first = newLink;
-		else last->next = newLink; // Next старого значения last --> newLink
+		else last->next = newLink; // Next СЃС‚Р°СЂРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ last --> newLink
 		last = newLink;
 	}
-	int deleteFirst() // Удаление первого элемента
-	{ // (предполагается, что список не пуст)
+	int deleteFirst() // РЈРґР°Р»РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+	{ // (РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ СЃРїРёСЃРѕРє РЅРµ РїСѓСЃС‚)
 		int temp = first->dData;
-		if (first->next == NULL) // Сохранение ссылки
+		if (first->next == NULL) // РЎРѕС…СЂР°РЅРµРЅРёРµ СЃСЃС‹Р»РєРё
 			last = NULL; // null <-- last
-		first = first->next; // first --> старое значение next
+		first = first->next; // first --> СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ next
 		return temp;
 	}
 	void displayList()
 	{
-		Link* current = first; // От начала списка
-		while (current != NULL) // Пока не конец списка
+		Link* current = first; // РћС‚ РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР°
+		while (current != NULL) // РџРѕРєР° РЅРµ РєРѕРЅРµС† СЃРїРёСЃРєР°
 		{
-			current->displayLink(); // Вывод данных
-			current = current->next; // Переход к следующему элементу
+			current->displayLink(); // Р’С‹РІРѕРґ РґР°РЅРЅС‹С…
+			current = current->next; // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ
 		}
 		cout << "";
 	}
-	void ChangeF(int e)	{ first->dData = e; } // Изменить первый
-	void ChangeL(int s) { last->dData = s; } // Изменить последний
+	void ChangeF(int e)	{ first->dData = e; } // РР·РјРµРЅРёС‚СЊ РїРµСЂРІС‹Р№
+	void ChangeL(int s) { last->dData = s; } // РР·РјРµРЅРёС‚СЊ РїРѕСЃР»РµРґРЅРёР№
 	int ReadLast() { return (last->dData); }
 	int ReadFirst()	{ return (first->dData); }
 };
@@ -58,17 +58,17 @@ class LinkQueue
 {
 private: FirstLastList theList;
 public:
-	LinkQueue() // Конструктор
-	{ FirstLastList* theList = new FirstLastList(); } // Создание 2-стороннего списка
-	bool isEmpty() { return theList.isEmpty(); } // true, если очередь пуста
-	void insert(int j) { theList.insertLast(j); } // Вставка элемента в конец очереди
-	int remove() { return theList.deleteFirst(); } // Удаление элемента в начале очереди
+	LinkQueue() // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	{ FirstLastList* theList = new FirstLastList(); } // РЎРѕР·РґР°РЅРёРµ 2-СЃС‚РѕСЂРѕРЅРЅРµРіРѕ СЃРїРёСЃРєР°
+	bool isEmpty() { return theList.isEmpty(); } // true, РµСЃР»Рё РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°
+	void insert(int j) { theList.insertLast(j); } // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† РѕС‡РµСЂРµРґРё
+	int remove() { return theList.deleteFirst(); } // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»Рµ РѕС‡РµСЂРµРґРё
 	void displayQueue()	{ theList.displayList(); }
-	void ChangeFirst(int r)	{ theList.ChangeF(r); } // Замена элемента в начале очереди
-	void ChangeLast(int d) { theList.ChangeL(d); } // Замена элемента в конце очереди
-	int First() { return theList.ReadFirst(); } // Чтение первого
-	int Last() { return theList.ReadLast(); } // Чтение последнего
-	void www(LinkQueue q) //Меняются местами первый и последний элементы
+	void ChangeFirst(int r)	{ theList.ChangeF(r); } // Р—Р°РјРµРЅР° СЌР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»Рµ РѕС‡РµСЂРµРґРё
+	void ChangeLast(int d) { theList.ChangeL(d); } // Р—Р°РјРµРЅР° СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅС†Рµ РѕС‡РµСЂРµРґРё
+	int First() { return theList.ReadFirst(); } // Р§С‚РµРЅРёРµ РїРµСЂРІРѕРіРѕ
+	int Last() { return theList.ReadLast(); } // Р§С‚РµРЅРёРµ РїРѕСЃР»РµРґРЅРµРіРѕ
+	void www(LinkQueue q) //РњРµРЅСЏСЋС‚СЃСЏ РјРµСЃС‚Р°РјРё РїРµСЂРІС‹Р№ Рё РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚С‹
 	{
 		int c = q.First(); int v = q.Last();
 		q.ChangeFirst(v); q.ChangeLast(c);
@@ -76,11 +76,11 @@ public:
 };
 
 int main() {
-	LinkQueue theQueue = LinkQueue(); // Очередь
-	for (int i = -50; i <= 50; i += 1) theQueue.insert(i); // Вставка элементов от -50 до 50
-	theQueue.www(theQueue); //Меняются местами первый и последний элементы
-	theQueue.displayQueue(); //Вывод
-	while (!theQueue.isEmpty())	{ theQueue.remove(); } // Удаление
+	LinkQueue theQueue = LinkQueue(); // РћС‡РµСЂРµРґСЊ
+	for (int i = -50; i <= 50; i += 1) theQueue.insert(i); // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚РѕРІ РѕС‚ -50 РґРѕ 50
+	theQueue.www(theQueue); //РњРµРЅСЏСЋС‚СЃСЏ РјРµСЃС‚Р°РјРё РїРµСЂРІС‹Р№ Рё РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚С‹
+	theQueue.displayQueue(); //Р’С‹РІРѕРґ
+	while (!theQueue.isEmpty())	{ theQueue.remove(); } // РЈРґР°Р»РµРЅРёРµ
 	cout << "";
 	system("pause");
 	return 0;
